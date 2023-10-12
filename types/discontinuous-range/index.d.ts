@@ -1,6 +1,8 @@
 // Type definitions for discontinuous-range 1.0
 // Project: https://github.com/dtudury/discontinuous-range
-// Definitions by: Victor Zhou <https://github.com/OiCMudkips>
+// Definitions by:
+// - Victor Zhou <https://github.com/OiCMudkips>
+// - Mark Fulton <https://github.com/mfulton26>
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 
 /**
@@ -8,45 +10,77 @@
  */
 declare class DiscontinuousRange {
     /**
-     * Creates a discontinuous range at rangeStart, and ending at
-     * rangeEnd. If rangeEnd is not specified, a range containing
-     * only rangeStart is created.
-     * @param rangeStart The start of the range to create.
-     * @param rangeEnd   The end of the range to create. Defaults to rangeStart.
+     * Creates an empty discontinuous range.
      */
-    constructor(rangeStart: number, rangeEnd?: number);
+    constructor();
 
     /**
-     * Adds the numbers from rangeStart to rangeEnd to the current range.
-     * If rangeEnd is not defined, only rangeStart is added to the current range.
-     * @param rangeStart The first number to add to the range.
-     * @param rangeEnd   The last number to add to the range. Defaults to rangeStart.
-     * @returns The range on which add was called. It contains the numbers from rangeStart to rangeEnd.
+     * Creates a discontinuous range at start and ending at end.
+     * @param number The start and end of the range to create.
      */
-    add(rangeStart: number, rangeEnd?: number): DiscontinuousRange;
+    constructor(number: number);
+
+    /**
+     * Creates a discontinuous range at start and ending at end.
+     * @param start The start of the range to create.    
+     * @param end   The end of the range to create.
+     */
+    constructor(start: number, end: number);
+
+    /**
+     * Creates a discontinuous range from an existing discontinuous range.
+     * @param range The range from which to create a new range.
+     */
+    constructor(range: DiscontinuousRange);
+
+    /**
+     * Gets the length of the discontinuous range. This is the total count of numbers in the range.
+     */
+    length: number;
+
+    /**
+     * Adds the number to the current range.
+     * @param number The number to add to the range.
+     * @returns The range on which add was called. It contains the number.
+     */
+    add(number: number): DiscontinuousRange;
+
+    /**
+     * Adds the numbers from start to end to the current range.
+     * @param start The first number to add to the range.
+     * @param end   The last number to add to the range.
+     * @returns The range on which add was called. It contains the numbers from start to end.
+     */
+    add(start: number, end: number): DiscontinuousRange;
 
     /**
      * Adds a range to the current range.
-     * @param rangeToAdd The range to union with the current range.
-     * @returns The range on which add was called. It contains the numbers in rangeToAdd.
+     * @param range The range to union with the current range.
+     * @returns The range on which add was called. It contains the numbers in range.
      */
-    add(rangeToAdd: DiscontinuousRange): DiscontinuousRange;
+    add(range: DiscontinuousRange): DiscontinuousRange;
 
     /**
-     * Removes the numbers from rangeStart to rangeEnd to the current range.
-     * If rangeEnd is not defined, only rangeStart is removed from the current range.
-     * @param rangeStart The first number to remove from the range.
-     * @param rangeEnd   The last number to remove from the range. Defaults to rangeStart.
-     * @returns The range on which subtract was called. It does not contain the numbers from rangeStart to rangeEnd.
+     * Removes the number from the current range.
+     * @param number The number to remove from the range.
+     * @returns The range on which subtract was called. It does not contain the number.
      */
-    subtract(rangeStart: number, rangeEnd?: number): DiscontinuousRange;
+    subtract(number: number): DiscontinuousRange;
 
     /**
-     * Removes rangeToRemove from the current range.
-     * @param rangeToRemove The range to exclude from the current range.
-     * @returns The range on which subtract was called. It contains the numbers in rangeToRemove.
+     * Removes the numbers from start to end to the current range.
+     * @param start The first number to remove from the range.
+     * @param end   The last number to remove from the range.
+     * @returns The range on which subtract was called. It does not contain the numbers from start to end.
      */
-    subtract(rangeToRemove: DiscontinuousRange): DiscontinuousRange;
+    subtract(start: number, end: number): DiscontinuousRange;
+
+    /**
+     * Removes range from the current range.
+     * @param range The range to exclude from the current range.
+     * @returns The range on which subtract was called. It does not contains the numbers in range.
+     */
+    subtract(range: DiscontinuousRange): DiscontinuousRange;
 
     /**
      * Returns the number in the discontinuous range at the specified index.
